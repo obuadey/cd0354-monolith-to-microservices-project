@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-user
+  labels:
+    app: udagram-api-user-app
+spec:
+  selector:
+    matchLabels:
+        app: udagram-api-user-app
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: udagram-api-user-app
+    spec:
+      containers:
+        - name: udagram-api-user-app
+          image: obuadey/udagram-api-user:latest\
+          ports:
+            - containerPort: 8081
+              protocol: TCP
+          imagePullPolicy: Always

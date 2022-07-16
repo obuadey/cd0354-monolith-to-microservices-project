@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-frontend 
+  labels:
+    app: udagram-frontend-app
+spec:
+  selector:
+    matchLabels:
+        app: udagram-frontend-app
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: udagram-frontend-app
+    spec:
+      containers:
+        - name: udagram-frontend-app
+          image: obuadey/udagram-frontend:latest
+          ports:
+            - containerPort: 8100
+              protocol: TCP
+          imagePullPolicy: Always
